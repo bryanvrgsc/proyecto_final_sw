@@ -176,9 +176,7 @@ def seleccionar(elemento,value_id):
         if elemento == 'certificados':
             unidadesFar = whichFar(value)
             unidadesAlv = whichAlv(value)
-            return render_template(f"info_templates/{elemento}.html",
-        value=value,
-        table_header=tabla["table_header"], value_alv = unidadesAlv, value_far=unidadesFar)
+            return render_template(f"info_templates/{elemento}.html", value=value, table_header=tabla["table_header"], value_alv = unidadesAlv, value_far= unidadesFar)
 
 
         return render_template(f"info_templates/{elemento}.html",

@@ -79,13 +79,15 @@ def upEquipo(form, id, elemento):
 
     if tipo == form.tipo.data:
         if tipo == "alv" :
-            print("editar alv")
-            alveografo = upAlveografo(form.alveografo, id, elemento)
+            alveografo = regAlveografo(form.alveografo)
             db.session.add(alveografo)
+            new_alv_id = str(getLastId(Alveografo).id_alv)
+            equipo.id_alv = new_alv_id
         else:
-            print("editar far")
-            farinografo = upFarinografo(form.farinografo, id, elemento)
+            farinografo = regFarinografo(form.farinografo)
             db.session.add(farinografo)
+            new_far_id =  str(getLastId(Farinografo).id_far)
+            equipo.id_far = new_far_id
     else:
         if tipo == "alv" :
             print("crear far")
@@ -116,16 +118,20 @@ def upCliente(form, id, elemento):
     cliente.domicilio=form.domicilio.data
     cliente.ncontacto=form.ncontacto.data
     if cliente.personalizado_alv == True and form.personalizado_alv.data == True:
-        alveografo = upAlveografo(form.alveografo, id, elemento)
+        alveografo = regAlveografo(form.alveografo)
         db.session.add(alveografo)
+        new_alv_id = str(getLastId(Alveografo).id_alv)
+        cliente.id_alv = new_alv_id
     elif cliente.personalizado_alv == False and form.personalizado_alv.data == True:
         alveografo = regAlveografo(form.alveografo)
         db.session.add(alveografo)
         new_alv_id = str(getLastId(Alveografo).id_alv)
         cliente.id_alv = new_alv_id
     if cliente.personalizado_far == True and form.personalizado_far.data == True:
-        farinografo = upFarinografo(form.farinografo, id, elemento)
+        farinografo = regFarinografo(form.farinografo)
         db.session.add(farinografo)
+        new_far_id =  str(getLastId(Farinografo).id_far)
+        cliente.id_far = new_far_id
     elif cliente.personalizado_far == False and form.personalizado_far.data == True:
         farinografo = regFarinografo(form.farinografo)
         db.session.add(farinografo)
@@ -152,10 +158,15 @@ def upInspeccion(form, id, elemento, l_nuevo):
     inspeccion.clave_far=form.equipo_far.data
 
     # creacion de alveofrafo y farinografo nuevo
-    alveografo = upAlveografo(form.alveografo, id, elemento)
-    db.session.add(alveografo)
-    farinografo = upFarinografo(form.farinografo, id, elemento)
+    farinografo = regFarinografo(form.farinografo)
     db.session.add(farinografo)
+    new_far_id =  str(getLastId(Farinografo).id_far)
+    inspeccion.id_far = new_far_id
+
+    alveografo = regAlveografo(form.alveografo)
+    db.session.add(alveografo)
+    new_alv_id = str(getLastId(Alveografo).id_alv)
+    inspeccion.id_alv = new_alv_id
 
     if l_nuevo == "no":
         # Edicion de Lote
@@ -163,12 +174,12 @@ def upInspeccion(form, id, elemento, l_nuevo):
     else:
         # Formulario: Se crea un nuevo lote y se adquire su id para agregarlo a la base
         lote = regLote(form.loteForm)
-        db.session.add(lote)
         new_lote_id = str(getLastId(Lote).idlote)
         inspeccion.idlote = new_lote_id
         
 
-    db.session.add(inspeccion)
+    db.session.add_all([alveografo,farinografo,inspeccion])
+    print(db.session.dirty)
     db.session.commit()
     return{"message": f"{inspeccion.id_inspeccion} ha sido actualizada con exito" , "type": "success"}
 

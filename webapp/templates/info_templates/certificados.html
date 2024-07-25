@@ -1,31 +1,28 @@
 {% extends 'info_templates/layout.html' %}
 
 {% block style %}
+<style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+</style>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 
 {% endblock %}
 {% block content %}
     <div class="p-3 d-flex justify-content-center">
-       
-        <HEAD>
-            <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-            <style>
-                    table {
-                      font-family: arial, sans-serif;
-                      border-collapse: collapse;
-                      width: 100%;
-                    }
-                    
-                    td, th {
-                      border: 1px solid #dddddd;
-                      text-align: left;
-                      padding: 8px;
-                    }
-                    
-                    tr:nth-child(even) {
-                      background-color: #dddddd;
-                    }
-            </style>
-          </HEAD>
             <div style="width:1025px;  padding:20px; text-align:center; border: 10px solid #787878">
               <br style="width:975px;  padding:20px; text-align:center; border: 5px solid #787878">
                      <span style="font-size:50px; font-weight:bold">Certificado de Inspeccion</span>
@@ -46,6 +43,7 @@
                        <tr>
                          <th>Concepto</th>
                          <th>Resultado</th>
+                         
                          <th>Estandar {% if value_far.id_far | int != 0 %}
                           Personalizado
                          {% else %}

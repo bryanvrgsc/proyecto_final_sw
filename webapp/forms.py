@@ -17,8 +17,9 @@ class Login(FlaskForm):
 
     def validate_username(self,username):
         user = Laboratorista.query.filter_by(username=username.data).first()
-        if user.active == False:
-            raise ValidationError("El usuario se encuentra inactivo")
+        if user:
+            if user.active == False:
+                raise ValidationError("El usuario se encuentra inactivo")
 
 
 class Buscar(FlaskForm):
@@ -126,8 +127,8 @@ class RegisterInspeccionNo(FlaskForm):
 
     def __init__(self, * args, ** kwargs):
         super(RegisterInspeccionNo, self).__init__( * args, ** kwargs)
-        self.equipo_alv.choices=[(table1.clave, table1.marca) for table1 in EquipoLab.query.filter(EquipoLab.id_alv!="Null").all()]
-        self.equipo_far.choices=[(table2.clave, table2.marca) for table2 in EquipoLab.query.filter(EquipoLab.id_far!= "Null").all()]
+        self.equipo_alv.choices=[(table1.clave, table1.modelo) for table1 in EquipoLab.query.filter(EquipoLab.id_alv!="Null").all()]
+        self.equipo_far.choices=[(table2.clave, table2.modelo) for table2 in EquipoLab.query.filter(EquipoLab.id_far!= "Null").all()]
         self.loteSelect.choices=[(table.idlote) for table in Lote.query.all()]
 
 
@@ -135,16 +136,16 @@ class RegisterInspeccionNo(FlaskForm):
 class RegisterInspeccionSi(FlaskForm):
     id_inspeccion = StringField("ID de Inspeccion", validators=[DataRequired()])
     loteForm = FormField(RegisterLote)
-    equipo_alv = SelectField("Equipo Utilizado", choices=[(table1.clave, table1.marca) for table1 in EquipoLab.query.filter(EquipoLab.id_alv!="Null").all()])
-    equipo_far = SelectField("Equipo Utilizado", choices=[(table2.clave, table2.marca) for table2 in EquipoLab.query.filter(EquipoLab.id_far!= "Null").all()])
+    equipo_alv = SelectField("Equipo Utilizado", choices=[(table1.clave, table1.modelo) for table1 in EquipoLab.query.filter(EquipoLab.id_alv!="Null").all()])
+    equipo_far = SelectField("Equipo Utilizado", choices=[(table2.clave, table2.modelo) for table2 in EquipoLab.query.filter(EquipoLab.id_far!= "Null").all()])
     alveografo = FormField(RegisterAlveografo)
     farinografo = FormField(RegisterFarinografo)
     submit = SubmitField('Registrar')
 
     def __init__(self, * args, ** kwargs):
         super(RegisterInspeccionSi, self).__init__( * args, ** kwargs)
-        self.equipo_alv.choices=[(table1.clave, table1.marca) for table1 in EquipoLab.query.filter(EquipoLab.id_alv!="Null").all()]
-        self.equipo_far.choices=[(table2.clave, table2.marca) for table2 in EquipoLab.query.filter(EquipoLab.id_far!= "Null").all()]
+        self.equipo_alv.choices=[(table1.clave, table1.modelo) for table1 in EquipoLab.query.filter(EquipoLab.id_alv!="Null").all()]
+        self.equipo_far.choices=[(table2.clave, table2.modelo) for table2 in EquipoLab.query.filter(EquipoLab.id_far!= "Null").all()]
 
 class RegisterCertificado(FlaskForm):
     factura = IntegerField('Factura', validators=[DataRequired()])

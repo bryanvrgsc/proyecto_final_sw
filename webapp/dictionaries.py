@@ -22,27 +22,27 @@ def universal(equipo):
             id_far = "Universal"
             absorcion_agua= '51.6–63.4 ml/100g'
             tolerancia_ub= '20 - 28 '
-            elasticidad= ''
-            viscodidad= ''
-            act_enzimatica= ''
+            elasticidad= '3.64 - 4.63 mm'
+            viscodidad= '450-600 g/kg 80°C'
+            act_enzimatica= 'Amilasas 30-35%'
             trigo_germinado= '60 - 75'
-            tiempo_amasado= ''
-            cantidad_gluten= ''
-            calidad_gluten= ''
-            indoneidad= ''
+            tiempo_amasado= '4 - 7 min'
+            cantidad_gluten= '12.5 - 13.5 %'
+            calidad_gluten= '60- 90%'
+            indoneidad= 'Levadura 20-25%'
             dureza= '54-145 FU'
-            reblandecimiento= ' '
+            reblandecimiento= '0.651 - 0.9357 aw'
             estabilidad= '4.45–11.20 min'
             tiempo_desarrollo= '8.3 - 9.3 min'
             qnumber= '24 - 125'
                 
     if equipo == "alveografo":
         class unidades():
-            id_var = "Universal"
-            tenacidad= '45'
-            extensibilidad= '71.96'
-            fuerza_panadera= '60'
-            indice_elasticidad= '47'
-            configuracion_curva= '0.99'
+            id_alv = "Universal"
+            tenacidad= '45 mm'
+            extensibilidad= '71.96 mm'
+            fuerza_panadera= '60 mm'
+            indice_elasticidad= '47 mm'
+            configuracion_curva= '0.99 mm'
     
     return unidades

@@ -13,23 +13,21 @@
             padding: 8px;
           }
           
-          tr:nth-child(even) {
-            background-color: #dddddd;
-          }
+          
   </style>
 </HEAD>
   <div style="width:1025px; padding:20px; text-align:center; border: 10px solid #787878">
     <br style="width:975px; padding:20px; text-align:center; border: 5px solid #787878">
            <span style="font-size:50px; font-weight:bold">Certificado de Inspeccion</span>
            <br><br>
-           <span style="font-size:25px"><i>Este Certifica a:</i></span>
+           <span style="font-size:20px"><i>Este Certifica a:</i></span>
            <br><br>
-           <span style="font-size:30px"><b>{{ value.orden.cliente.nombre }} {{ value.orden.cliente.apellido }}</b></span><br/><br/>
-           <span style="font-size:25px"><i>Con la inspección valida número:</i></span> <br/><br/>
-           <span style="font-size:30px">{{value.inspeccion.idi}}</span> <br/>
-           <br/><span style="font-size:25px"><i>Con número de orden:</i></span> <br/><br/>
-           <span style="font-size:30px">{{value.norden}}</span> <br/><br/>
-           <span style="font-size:25px">Otorgada por: <b>{{ value.laboratorista.username }}</b></span> 
+           <span style="font-size:25px"><b>{{ value.orden.cliente.nombre }} {{ value.orden.cliente.apellido }}</b></span><br/><br/>
+           <span style="font-size:20px"><i>Con la inspección valida número:</i></span> 
+           <span style="font-size:25px">{{value.inspeccion.idi}}</span> <br/>
+           <br/><span style="font-size:20px"><i>Con número de orden:</i></span> 
+           <span style="font-size:25px">{{value.norden}}</span> <br/><br/>
+           <span style="font-size:20px">Otorgada por: <b>{{ value.laboratorista.username }}</b></span> 
            
           
 
